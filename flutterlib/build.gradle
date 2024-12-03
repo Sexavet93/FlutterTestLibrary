@@ -38,10 +38,18 @@ publishing {
         bar(MavenPublication){
             groupId "com.flutterchannel"
             artifactId "fluttertestlibrary"
-            version "1.0"
+            version "1.1"
 
             afterEvaluate {
                 from components.release
+            }
+
+            pom {
+                withXml {
+                    asNode().dependencies.dependency.findAll {
+                        it.artifactId.text().contains("flutter_embedding")
+                    }.each { it.parent().remove(it) }
+                }
             }
         }
     }
@@ -68,4 +76,5 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+    implementation libs.flutter
 }
