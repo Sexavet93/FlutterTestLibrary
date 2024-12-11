@@ -38,7 +38,7 @@ publishing {
         bar(MavenPublication){
             groupId "com.flutterchannel"
             artifactId "fluttertestlibrary"
-            version "1.4"
+            version "1.5"
 
             afterEvaluate {
                 from components.release
